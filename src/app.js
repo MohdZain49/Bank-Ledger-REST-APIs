@@ -1,8 +1,23 @@
 const express = require("express");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
+const ENV = require("./lib/env");
 
 const app = express();
 
-app.use(express.json())
+app.use(
+  cors({
+    origin: ENV.CLIENT_URL,
+    credentials: true,
+  }),
+);
+
+app.use(express.json({ limit: "100kb" }));
+
+app.use(express.urlencoded({ extended: true }));
+
+app.use(cookieParser());
 
 app.use("/", (_, res) =>
   res.json({
