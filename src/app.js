@@ -19,11 +19,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-app.use("/", (_, res) =>
+app.get("/", (_, res) =>
   res.json({
     success: true,
     message: "Bank Ledger REST APIs",
   }),
 );
+
+
+
 
 module.exports = app;
